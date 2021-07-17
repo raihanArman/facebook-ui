@@ -6,6 +6,8 @@ import 'package:facebook_ui/widgets/profile_avatar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'widgets.dart';
+
 class Stories extends StatelessWidget {
   final User currentUser;
   final List<Story> stories;
@@ -18,7 +20,7 @@ class Stories extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 200.0,
-      color: Colors.white,
+      color: Responsive.isDesktop(context) ? Colors.transparent : Colors.white,
       child: ListView.builder(
         padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
         scrollDirection: Axis.horizontal,
@@ -78,7 +80,9 @@ class _StoryCard extends StatelessWidget {
           width: 110.0,
           decoration: BoxDecoration(
             gradient: Palette.storyGradient,
-            borderRadius: BorderRadius.circular(12.0)
+            borderRadius: BorderRadius.circular(12.0),
+            boxShadow: Responsive.isDesktop(context) ?
+                [BoxShadow(color: Colors.black26, offset: Offset(0,2), blurRadius: 4.0)] : null,
           )
         ),
         Positioned(
